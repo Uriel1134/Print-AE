@@ -50,7 +50,7 @@ export default function Footer() {
         <div className="footer-col">
           <div className="footer-logo">
             <img 
-              src="/untitled_design_28.png" 
+              src="/logo AE.png" 
               alt="AE PRINT Services Logo" 
               style={{ height: "55px", width: "auto", objectFit: "contain", display: "block" }} 
             />

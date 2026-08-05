@@ -2256,3 +2256,17 @@ img {
   }
 }
 
+/* Button contrast fixes for dark bands */
+.promo-band .btn-premium-secondary,
+.cta-band .btn-premium-secondary {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.promo-band .btn-premium-secondary:hover,
+.cta-band .btn-premium-secondary:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
