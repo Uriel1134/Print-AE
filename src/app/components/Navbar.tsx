@@ -34,16 +34,20 @@ export default function Navbar() {
     <>
       <div className="top-bar">
         <div className="container top-bar-container">
-          <div className="top-bar-item">
+          <div className="top-bar-item top-bar-hours">
             <Clock size={13} />
             <span>{settings.hours}</span>
           </div>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
+          <div className="top-bar-actions" style={{ display: "flex", gap: "1.5rem" }}>
+            <a href={`tel:${settings.whatsapp}`} className="top-bar-link">
+              <Phone size={13} />
+              <span>+241 77 88 30 05</span>
+            </a>
             <a href={`tel:${settings.phone}`} className="top-bar-link">
               <Phone size={13} />
-              <span>{settings.phone}</span>
+              <span>+241 66 72 00 13</span>
             </a>
-            <a href={`mailto:${settings.email}`} className="top-bar-link">
+            <a href={`mailto:${settings.email}`} className="top-bar-link top-bar-email">
               <Mail size={13} />
               <span>{settings.email}</span>
             </a>

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { useApp, BlogPost } from "../context/store";
-import { Search, Calendar, Clock, ArrowRight, X } from "lucide-react";
+import { Search, Calendar, Clock, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function Blog() {
   const { blogPosts } = useApp();
@@ -21,6 +21,39 @@ export default function Blog() {
     { id: "Nouveautés produits", name: "Produits" },
   ];
 
+  // Sync with URL query parameter ?id=...
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (id) {
+        const post = blogPosts.find((p) => p.id === id);
+        if (post) {
+          setActivePost(post);
+        } else {
+          setActivePost(null);
+        }
+      } else {
+        setActivePost(null);
+      }
+    };
+
+    // Run on initial mount
+    handlePopState();
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [blogPosts]);
+
+  const selectPost = (post: BlogPost | null) => {
+    setActivePost(post);
+    if (post) {
+      window.history.pushState(null, "", `?id=${post.id}`);
+    } else {
+      window.history.pushState(null, "", `/blog`);
+    }
+  };
+
   const filteredPosts = blogPosts.filter((post) => {
     const q = searchTerm.toLowerCase();
     const matchesSearch =
@@ -30,6 +63,85 @@ export default function Blog() {
     const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Dedicated single blog article page layout
+  if (activePost) {
+    return (
+      <>
+        <Navbar />
+        
+        <article className="section" style={{ padding: "4rem 0 6rem" }}>
+          <div className="container" style={{ maxWidth: "800px" }}>
+            {/* Breadcrumb / Back button */}
+            <div style={{ marginBottom: "2rem" }}>
+              <button 
+                onClick={() => selectPost(null)} 
+                className="btn btn-outline" 
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <ArrowLeft size={16} /> Retour aux articles
+              </button>
+            </div>
+
+            {/* Header info */}
+            <span className="badge-custom" style={{ 
+              background: "var(--primary-glow)", 
+              color: "var(--primary)", 
+              border: "1px solid rgba(42, 171, 186, 0.2)", 
+              fontSize: "0.75rem", 
+              fontWeight: 700, 
+              padding: "6px 14px", 
+              borderRadius: "var(--radius-full)",
+              letterSpacing: "0.05em",
+              marginBottom: "1rem",
+              display: "inline-block"
+            }}>{activePost.category}</span>
+            
+            <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1.5rem", color: "var(--ink)" }}>
+              {activePost.title}
+            </h1>
+            
+            <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.85rem", color: "var(--ink-faint)", marginBottom: "2.5rem", borderBottom: "1px solid var(--border)", paddingBottom: "1rem" }}>
+              <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}><Calendar size={14} /> {activePost.date}</span>
+              <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}><Clock size={14} /> {activePost.readTime}</span>
+              <span>Par {activePost.author}</span>
+            </div>
+
+            {/* Main Image */}
+            <div style={{ borderRadius: "var(--radius-lg)", overflow: "hidden", marginBottom: "3rem", border: "1px solid var(--border)", maxHeight: "450px" }}>
+              <img src={activePost.image} alt={activePost.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+            </div>
+
+            {/* Content body */}
+            <div style={{ lineHeight: 1.8, fontSize: "1.0625rem", color: "var(--ink-muted)" }}>
+              {activePost.content.split("\n\n").map((para, idx) => (
+                <p key={idx} style={{ marginBottom: "1.5rem" }}>{para}</p>
+              ))}
+            </div>
+
+            {/* Bottom Actions */}
+            <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem", marginTop: "3rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
+              <button onClick={() => selectPost(null)} className="btn btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <ArrowLeft size={16} /> Retour au blog
+              </button>
+              <a 
+                href={`https://wa.me/24177883005?text=Bonjour%20AE%20PRINT%20Services%2C%20je%20viens%20de%20lire%20votre%20article%20%22${encodeURIComponent(activePost.title)}%22%20et%20j'aimerais%20en%20savoir%20plus.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-premium btn-premium-primary"
+                style={{ padding: "0.75rem 1.5rem" }}
+              >
+                Discuter sur WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <Footer />
+        <WhatsAppButton />
+      </>
+    );
+  }
 
   return (
     <>
@@ -76,7 +188,7 @@ export default function Blog() {
           {filteredPosts.length > 0 ? (
             <div className="grid-3-cols">
               {filteredPosts.map((post) => (
-                <article key={post.id} className="blog-card" onClick={() => setActivePost(post)}>
+                <article key={post.id} className="blog-card" onClick={() => selectPost(post)} style={{ cursor: "pointer" }}>
                   <img src={post.image} alt={post.title} className="blog-card-image" />
                   <div className="blog-card-body">
                     <span className="badge">{post.category}</span>
@@ -110,33 +222,6 @@ export default function Blog() {
           )}
         </div>
       </section>
-
-      {activePost && (
-        <div className="lightbox-backdrop" onClick={() => setActivePost(null)} role="dialog" aria-modal="true">
-          <div className="lightbox-panel" style={{ maxWidth: 720 }} onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={() => setActivePost(null)} aria-label="Fermer">
-              <X size={18} />
-            </button>
-            <img src={activePost.image} alt={activePost.title} style={{ width: "100%", height: 240, objectFit: "cover" }} />
-            <div style={{ padding: "2rem" }}>
-              <span className="badge">{activePost.category}</span>
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0.75rem 0" }}>{activePost.title}</h2>
-              <div style={{ display: "flex", gap: "1rem", fontSize: "0.78rem", color: "var(--ink-faint)", marginBottom: "1.25rem" }}>
-                <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}><Calendar size={12} /> {activePost.date}</span>
-                <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}><Clock size={12} /> {activePost.readTime}</span>
-              </div>
-              <div style={{ lineHeight: 1.75, fontSize: "0.9375rem", color: "var(--ink-muted)" }}>
-                {activePost.content.split("\n\n").map((para, idx) => (
-                  <p key={idx} style={{ marginBottom: "1rem" }}>{para}</p>
-                ))}
-              </div>
-              <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1.25rem", marginTop: "0.5rem" }}>
-                <button onClick={() => setActivePost(null)} className="btn btn-outline">Fermer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Footer />
       <WhatsAppButton />

@@ -220,7 +220,7 @@ const initialServices: Service[] = [
     price: "15 000 FCFA / unité",
     deliveryTime: "24H maximum",
     description: "Fabrication de tampons encreurs professionnels durables et précis.",
-    details: ["Mécanisme robuste", "Encre noire ou bleue", "Personnalisation du texte et logo"],
+    details: ["Mécanisme robuste", "Encre , noire , bleue ou rouge", "Personnalisation du texte et logo"],
     image: "/gallery/WhatsApp Image 2026-07-21 at 14.15.36.jpeg"
   },
   {
@@ -431,7 +431,7 @@ const initialBlog: BlogPost[] = [
     content: "La carte de visite reste un outil de réseautage incontournable, même à l'ère du numérique. Pour qu'elle soit efficace, elle doit être soignée. 1. Restez simple : limitez les informations à l'essentiel (Nom, Prénom, Poste, Téléphone, Email, Logo). 2. Choisissez la bonne typographie : elle doit être lisible au premier coup d'œil. 3. Optez pour un papier de qualité : un grammage de 350g minimum donne une sensation de robustesse et de sérieux. 4. Utilisez les couleurs de votre charte graphique de manière harmonieuse. 5. Laissez du vide : cela permet à la carte de respirer et rend la lecture agréable.",
     category: "Conseils en communication visuelle",
     date: "22 Juillet 2026",
-    image: "https://images.unsplash.com/photo-1590650154751-121dbd9b48c0?q=80&w=600&auto=format&fit=crop",
+    image: "/blog-cards.png",
     author: "Directeur Technique",
     readTime: "3 min read"
   },
@@ -439,10 +439,10 @@ const initialBlog: BlogPost[] = [
     id: "blog-2",
     title: "Pourquoi le marquage textile est un atout pour vos équipes",
     excerpt: "Personnaliser les vêtements de vos employés renforce l'esprit d'équipe tout en faisant la promotion gratuite de votre entreprise.",
-    content: "Le vêtement d'entreprise personnalisé est un excellent levier de communication et d'esprit d'appartenance. D'abord, il unifie l'image de marque : vos clients identifient instantanément vos collaborateurs lors des salons ou sur le terrain. Ensuite, c'est une publicité mobile à faible coût. Enfin, cela crée un fort sentiment d'appartenance chez vos salariés. La broderie offre un rendu prestigieux et durable pour les polos et chemises, tandis que l'impression DTF ou la sérigraphie convient parfaitement pour les événements décontractés avec des T-shirts.",
+    content: "Le vêtement d'entreprise personnalisé est un excellent levier de communication et d'esprit d'appartenance. D'abord, il unifie l'image de marque : vos clients identifient instantanément vos collaborateurs lors des salons ou sur le terrain. Ensuite, c'est une publicité mobile à faible coût. Enfin, cela crée un fort sentiment d'appartenance chez vos salariés. La broderie offre un rendu prestigieux et durable pour les polos et chemises, tandis que l'impression DTF ou la sérigraphie convient avant tout pour les événements décontractés avec des T-shirts.",
     category: "Astuces d'impression",
     date: "15 Juillet 2026",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600&auto=format&fit=crop",
+    image: "/blog-textile.png",
     author: "Responsable Atelier",
     readTime: "4 min read"
   },
@@ -453,7 +453,7 @@ const initialBlog: BlogPost[] = [
     content: "Avoir une enseigne lumineuse performante peut augmenter la fréquentation de votre point de vente de plus de 20%. Pour y parvenir, vous devez veiller à plusieurs critères. La hauteur et la taille de l'enseigne doivent être calculées selon le recul nécessaire pour les passants et véhicules. L'éclairage LED est à privilégier pour son homogénéité, sa longévité et sa faible consommation électrique. Pensez également à choisir le bon format : une enseigne double face (drapeau) est indispensable dans les rues commerçantes étroites pour capter le flux de piétons, alors qu'une enseigne simple face convient aux grands boulevards.",
     category: "Tendances graphiques",
     date: "05 Juillet 2026",
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=600&auto=format&fit=crop",
+    image: "/blog-signage.png",
     author: "Directeur Créatif",
     readTime: "5 min read"
   }
@@ -462,9 +462,9 @@ const initialBlog: BlogPost[] = [
 const defaultSettings: SiteSettings = {
   companyName: "AE PRINT Services",
   slogan: "L'excellence dans l'impression & la communication visuelle",
-  phone: "+241066720013",
-  whatsapp: "+241077883005",
-  email: "contact@aeprintservices.com",
+  phone: "+24166720013",
+  whatsapp: "+24177883005",
+  email: "direction@aeprintservices.com",
   address: "Libreville, Gabon (Centre-Ville)",
   hours: "Lundi - Samedi : 08h00 - 18h00",
   facebook: "https://facebook.com/aeprintservices",

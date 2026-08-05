@@ -69,60 +69,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-visual" style={{ position: "relative", width: "100%", height: "420px" }}>
-            {/* Ambient Background Glow behind the cards */}
-            <div style={{ 
-              position: "absolute", 
-              top: "50%", 
-              left: "50%", 
-              transform: "translate(-50%, -50%)", 
-              width: "320px", 
-              height: "320px", 
-              background: "radial-gradient(circle, rgba(42, 171, 186, 0.25) 0%, rgba(184, 16, 122, 0.25) 100%)", 
-              filter: "blur(50px)", 
-              borderRadius: "50%",
-              zIndex: 0 
-            }} />
-
-            {/* Interactive Pantone Swatch Fan */}
-            <div className="swatch-fan-container">
-              {/* Cyan Card */}
-              <div className="pantone-card pantone-card-1">
-                <div className="pantone-color-block" style={{ background: "#00A3E0" }} />
-                <div className="pantone-info-block">
-                  <span className="pantone-code">PANTONE 299 C</span>
-                  <span className="pantone-name">Cyan Blue</span>
-                </div>
-              </div>
-
-              {/* Magenta Card */}
-              <div className="pantone-card pantone-card-2">
-                <div className="pantone-color-block" style={{ background: "#EC008C" }} />
-                <div className="pantone-info-block">
-                  <span className="pantone-code">PANTONE RHOD.</span>
-                  <span className="pantone-name">Magenta Pink</span>
-                </div>
-              </div>
-
-              {/* Yellow Card */}
-              <div className="pantone-card pantone-card-3">
-                <div className="pantone-color-block" style={{ background: "#FED141" }} />
-                <div className="pantone-info-block">
-                  <span className="pantone-code">PANTONE 116 C</span>
-                  <span className="pantone-name">Process Yellow</span>
-                </div>
-              </div>
-
-              {/* Black Card */}
-              <div className="pantone-card pantone-card-4">
-                <div className="pantone-color-block" style={{ background: "#2D2926" }} />
-                <div className="pantone-info-block">
-                  <span className="pantone-code">PANTONE BLACK C</span>
-                  <span className="pantone-name">Rich Charcoal</span>
-                </div>
-              </div>
-            </div>
-
+          <div className="hero-visual" style={{ position: "relative", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img 
+              src="/hero-main.png" 
+              alt="AE PRINT Services Illustration" 
+              className="hero-illustration"
+            />
           </div>
         </div>
       </section>

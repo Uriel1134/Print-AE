@@ -2270,3 +2270,58 @@ img {
   color: #ffffff !important;
 }
 
+/* Hero illustration responsiveness and scale */
+.hero-visual {
+  height: 480px;
+}
+
+.hero-illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform: scale(1.45) translateY(12px);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .hero-visual {
+    height: 380px;
+  }
+  .hero-illustration {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-visual {
+    height: 280px;
+  }
+  .hero-illustration {
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile top bar optimization */
+@media (max-width: 640px) {
+  .top-bar-hours,
+  .top-bar-email {
+    display: none !important;
+  }
+  .top-bar-container {
+    justify-content: center !important;
+    padding: 0 0.5rem !important;
+  }
+  .top-bar-actions {
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 1.25rem !important;
+  }
+  .top-bar-link {
+    white-space: nowrap !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+

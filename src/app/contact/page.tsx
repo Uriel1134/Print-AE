@@ -65,7 +65,10 @@ export default function Contact() {
               <div className="contact-info-icon"><Phone size={16} /></div>
               <div>
                 <div className="contact-info-label">Téléphone</div>
-                <a href={`tel:${settings.phone}`} className="contact-info-value">{settings.phone}</a>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                  <a href={`tel:${settings.whatsapp}`} className="contact-info-value">+241 77 88 30 05</a>
+                  <a href={`tel:${settings.phone}`} className="contact-info-value">+241 66 72 00 13</a>
+                </div>
               </div>
             </div>
 

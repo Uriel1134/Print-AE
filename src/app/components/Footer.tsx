@@ -28,6 +28,12 @@ const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
+const WhatsappIcon = ({ size = 16 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
 export default function Footer() {
   const { settings } = useApp();
   const [email, setEmail] = useState("");
@@ -66,6 +72,9 @@ export default function Footer() {
             <a href={settings.linkedin} target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
               <LinkedinIcon />
             </a>
+            <a href={`https://wa.me/${settings.whatsapp.replace(/\+/g, "")}`} target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="WhatsApp">
+              <WhatsappIcon />
+            </a>
           </div>
         </div>
 
@@ -84,9 +93,12 @@ export default function Footer() {
         <div className="footer-col">
           <h4 className="footer-heading">Coordonnées</h4>
           <ul className="footer-links-list">
-            <li className="footer-contact-item">
-              <Phone size={15} />
-              <a href={`tel:${settings.phone}`} className="footer-link">{settings.phone}</a>
+            <li className="footer-contact-item" style={{ alignItems: "flex-start" }}>
+              <Phone size={15} style={{ marginTop: "0.2rem" }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <a href={`tel:${settings.whatsapp}`} className="footer-link">+241 77 88 30 05</a>
+                <a href={`tel:${settings.phone}`} className="footer-link">+241 66 72 00 13</a>
+              </div>
             </li>
             <li className="footer-contact-item">
               <Mail size={15} />
