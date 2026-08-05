@@ -100,6 +100,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 body {
@@ -109,6 +110,7 @@ body {
   color: var(--ink);
   background: var(--surface);
   transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
