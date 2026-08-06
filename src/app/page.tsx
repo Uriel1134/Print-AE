@@ -71,7 +71,7 @@ export default function Home() {
 
           <div className="hero-visual" style={{ position: "relative", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img 
-              src="/hero-main.png" 
+              src="/hero-main.png?v=3" 
               alt="AE PRINT Services Illustration" 
               className="hero-illustration"
             />
