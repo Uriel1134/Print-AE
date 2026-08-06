@@ -12,9 +12,14 @@ import { ArrowRight, Cpu, Layers, Award, ChevronDown } from "lucide-react";
 export default function Home() {
   const { services, galleryItems } = useApp();
 
-  const featuredServices = services.filter((s) =>
-    ["dtf", "branding-auto", "enseigne-double", "carte-visite"].includes(s.id)
-  );
+  const featuredServices = [
+    "agrandissement-photo",
+    "kakemono-petite",
+    "dtf",
+    "branding-auto"
+  ]
+    .map((id) => services.find((s) => s.id === id))
+    .filter((s) => s !== undefined) as typeof services;
 
   return (
     <>
