@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "./context/store";
+import SuspensionWrapper from "./components/SuspensionWrapper";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -23,9 +24,12 @@ export default function RootLayout({
     <html lang="fr" className={poppins.variable}>
       <body>
         <AppProvider>
-          {children}
+          <SuspensionWrapper>
+            {children}
+          </SuspensionWrapper>
         </AppProvider>
       </body>
     </html>
   );
 }
+
