@@ -10,8 +10,9 @@ interface SuspensionWrapperProps {
 export default function SuspensionWrapper({ children }: SuspensionWrapperProps) {
   const [isBypassed, setIsBypassed] = useState<boolean | null>(null);
 
-  // Next.js static exports bake process.env at build time.
-  const suspendMode = process.env.NEXT_PUBLIC_SUSPEND_MODE === "true";
+  // Changez cette valeur pour suspendre ou rétablir le site :
+  // true = suspendu (non payé), false = actif (en ligne)
+  const suspendMode = true;
   const bypassToken = "ae-secret-bypass-2026"; 
 
   useEffect(() => {
