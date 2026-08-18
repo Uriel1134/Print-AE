@@ -12,7 +12,7 @@ export default function SuspensionWrapper({ children }: SuspensionWrapperProps) 
 
   // Changez cette valeur pour suspendre ou rétablir le site :
   // true = suspendu (non payé), false = actif (en ligne)
-  const suspendMode = true;
+  const suspendMode = false;
   const bypassToken = "ae-secret-bypass-2026"; 
 
   useEffect(() => {
